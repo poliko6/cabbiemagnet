@@ -10,6 +10,30 @@
 
 	</bean>
 
+<!-- set configuration file for JDBC
+
+<bean id="propertyPlaceholder" 
+      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+  <property name="location" value="/WEB-INF/config.properties" />
+</bean>
+
+ -->
+ 
+<!--  using C3p0 soon
+
+<bean id="mysqlDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
+      destroy-method="close">
+  <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+  <property name="jdbcUrl" value="${database.url}"/>
+  <property name="user" value="${database.user}"/>
+  <property name="password" value="${database.password}"/>
+  <property name="initialPoolSize" value="${database.connections.start}"/>
+  <property name="maxPoolSize" value="${database.connections.max}"/>  
+  <property name="idleConnectionTestPeriod" value="270" />
+</bean>
+
+ -->
+
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
