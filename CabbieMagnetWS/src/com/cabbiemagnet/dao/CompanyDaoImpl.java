@@ -8,13 +8,13 @@ import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer
 
 import com.cabbiemagnet.model.*;
 
+import java.beans.PropertyVetoException;
 import java.sql.Types;
 import java.util.ArrayList;
 import com.cabbiemagnet.dao.mapper.*;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class CompanyDaoImpl implements ICompanyDao {
-
-	private DataFieldMaxValueIncrementer bookIncrementer;
 
 	private static CompanyDaoImpl instance;
 
@@ -29,11 +29,27 @@ public class CompanyDaoImpl implements ICompanyDao {
 
 	public CompanyDaoImpl() {
 		super();
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/cabbiemagnet");
-		dataSource.setUsername("root");
-		dataSource.setPassword("adminadmin");
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		try {
+			dataSource.setDriverClass("com.mysql.jdbc.Driver");
+			dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/cabbiemagnet");
+			dataSource.setUser("root");
+			dataSource.setPassword("adminadmin");
+			dataSource.setInitialPoolSize(10);
+			dataSource.setMaxPoolSize(1000);
+			dataSource.setIdleConnectionTestPeriod(10);
+			
+		} catch (PropertyVetoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//		dataSource.setUrl("jdbc:mysql://localhost:3306/cabbiemagnet");
+//		dataSource.setUsername("root");
+//		dataSource.setPassword("adminadmin");
 
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
