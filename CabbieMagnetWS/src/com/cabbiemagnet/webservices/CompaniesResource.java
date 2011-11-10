@@ -7,8 +7,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 import com.cabbiemagnet.model.Company;
 import com.cabbiemagnet.dao.*;
+
 
 // POJO, no interface no extends
 
@@ -21,24 +26,32 @@ import com.cabbiemagnet.dao.*;
 //Sets the path to base URL + /companies
 
 @Path("/companies")
-public class CompaniesREST {
+public class CompaniesResource { 
 
-//	@Context
-//	UriInfo uriInfo;
-//	@Context
-//	Request request;
+	// @Context
+	// UriInfo uriInfo;
+	// @Context
+	// Request request;
 
+	ApplicationContext context = new  FileSystemXmlApplicationContext("classpath:applicationContext.xml");
+	
 	@GET
-
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ArrayList<Company> getCompanies() {
-		return CompanyDaoImpl.getInstance().selectAll();
+
+		ICompanyDao compDao = (ICompanyDao) context.getBean("compDao"); // get compDao bean
+
+		return compDao.selectAll();
 	}
 
 	@GET
 	@Path("{location}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public ArrayList<Company> getCompaniesByLocation(@PathParam("location") String location) {
-		return CompanyDaoImpl.getInstance().findByLocation(location);
+	public ArrayList<Company> getCompaniesByLocation(
+			@PathParam("location") String location) {
+
+		ICompanyDao compDao = (ICompanyDao) context.getBean("compDao"); // get compDao bean
+		
+		return compDao.findByLocation(location);
 	}
 }
