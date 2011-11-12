@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 
 	<!-- set configuration file for JDBC -->
@@ -12,7 +13,7 @@
 
 
 
-	<!-- using C3p0 pooled dadta source -->
+	<!-- using C3p0 pooled data source -->
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
@@ -30,8 +31,18 @@
 		<constructor-arg index="0" ref="dataSource" />
 	</bean>
 
-	<bean id="compDao" class="com.cabbiemagnet.dao.CompanyDaoImpl">
+	<!-- DAO beans -->
+	<bean id="compDao" class="com.cabbiemagnet.dao.impl.CompanyDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 
+	<!-- DAO beans -->
+	<bean id="custDao" class="com.cabbiemagnet.dao.impl.CustomerDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- DAO beans -->
+	<bean id="ordersDao" class="com.cabbiemagnet.dao.impl.OrderDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
 </beans>

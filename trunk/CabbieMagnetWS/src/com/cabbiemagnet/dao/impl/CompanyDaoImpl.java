@@ -1,4 +1,4 @@
-package com.cabbiemagnet.dao;
+package com.cabbiemagnet.dao.impl;
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -7,6 +7,8 @@ import com.cabbiemagnet.model.*;
 
 import java.sql.Types;
 import java.util.ArrayList;
+
+import com.cabbiemagnet.dao.ICompanyDao;
 import com.cabbiemagnet.dao.mapper.*;
 
 public class CompanyDaoImpl implements ICompanyDao {
@@ -52,7 +54,7 @@ public class CompanyDaoImpl implements ICompanyDao {
 	}
 
 	@Override
-	public ArrayList<Company> selectAll() {
+	public ArrayList<Company> readAll() {
 		ArrayList<Company> companies = new ArrayList<Company>();
 		ArrayList<Car> cars = new ArrayList<Car>();
 		ArrayList<Service> services = new ArrayList<Service>();
@@ -91,7 +93,7 @@ public class CompanyDaoImpl implements ICompanyDao {
 			}
 		
 			// set list of cars to the specific company
-			companies.get(i).setCars(cars);
+			companies.get(i).setCars(cars); 
 		}
 
 		
