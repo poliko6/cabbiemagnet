@@ -14,7 +14,6 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import com.cabbiemagnet.model.Company;
 import com.cabbiemagnet.dao.*;
 
-
 // POJO, no interface no extends
 
 // The class registers its methods for the HTTP GET request using the @GET annotation. 
@@ -26,22 +25,37 @@ import com.cabbiemagnet.dao.*;
 //Sets the path to base URL + /companies
 
 @Path("/companies")
-public class CompaniesResource { 
+public class CompaniesResource {
 
 	// @Context
 	// UriInfo uriInfo;
 	// @Context
 	// Request request;
 
-	ApplicationContext context = new  FileSystemXmlApplicationContext("classpath:applicationContext.xml");
+//	ApplicationContext context;
+
+//	public CompaniesResource()
+//	{
+//		context = new FileSystemXmlApplicationContext(
+//				"classpath:applicationContext.xml");
+//	}
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ArrayList<Company> getCompanies() {
 
-		ICompanyDao compDao = (ICompanyDao) context.getBean("compDao"); // get compDao bean
+		ICompanyDao compDao = (ICompanyDao) Common.getContext().getBean("compDao"); // get
+																		// compDao
+																		// bean
 
-		return compDao.selectAll();
+		ArrayList<Company> companies = compDao.readAll();	// retrieve companies
+
+		// throw runtime exception with information if no companies were found
+		if (companies.size() == 0) {
+			throw new RuntimeException("No companies found!");
+		}
+
+		return companies;
 	}
 
 	@GET
@@ -49,9 +63,18 @@ public class CompaniesResource {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ArrayList<Company> getCompaniesByLocation(
 			@PathParam("location") String location) {
-
-		ICompanyDao compDao = (ICompanyDao) context.getBean("compDao"); // get compDao bean
+ 
+		ICompanyDao compDao = (ICompanyDao) Common.getContext().getBean("compDao"); // get
+																		// compDao
+																		// bean
 		
-		return compDao.findByLocation(location);
+		ArrayList<Company> companies = compDao.findByLocation(location);	// retrieve companies
+		
+		// throw runtime exception with information if no companies were found
+		if (companies.size() == 0) {
+			throw new RuntimeException("No companies found from " + location + "!");
+		}
+
+		return companies;
 	}
 }

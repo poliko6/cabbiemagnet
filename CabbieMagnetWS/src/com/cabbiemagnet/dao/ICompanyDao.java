@@ -9,5 +9,5 @@ public interface ICompanyDao {
 	void update(Company company);
 	void delete(Company company);
 	ArrayList<Company> findByLocation(String location);
-	ArrayList<Company> selectAll();
+	ArrayList<Company> readAll();
 }
