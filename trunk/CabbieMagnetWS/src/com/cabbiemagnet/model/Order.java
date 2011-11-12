@@ -2,7 +2,6 @@ package com.cabbiemagnet.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.sql.Timestamp;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,27 +17,34 @@ public class Order implements Serializable {
 	private String customer;
 	private String company;
 	private String state;
-	private Timestamp timeOrdered;
-	private Timestamp requestedTimeToDeliver;
+	private String timeOrdered;
+	private String requestedTimeToDeliver;
 	private String fromLocation;
 	private String toLocation;
 	private String customerNote;
-	private ArrayList<Car> cars;
-	private String orderReply;
-	private Timestamp orderReplyTime;
-	private Timestamp orderReplyTimeToDeliver;
+	private String orderReplyMessage;
+	private String orderReplyTime;
+	private String orderReplyTimeToDeliver;
+	private ArrayList<OrderedCar> cars;
 	
 	
-	public Timestamp getOrderReplyTimeToDeliver() {
+	
+	public ArrayList<OrderedCar> getCars() {
+		return cars;
+	}
+	public void setCars(ArrayList<OrderedCar> cars) {
+		this.cars = cars;
+	}
+	public String getOrderReplyTimeToDeliver() {
 		return orderReplyTimeToDeliver;
 	}
-	public void setOrderReplyTimeToDeliver(Timestamp orderReplyTimeToDeliver) {
+	public void setOrderReplyTimeToDeliver(String orderReplyTimeToDeliver) {
 		this.orderReplyTimeToDeliver = orderReplyTimeToDeliver;
 	}
-	public Timestamp getOrderReplyTime() {
+	public String getOrderReplyTime() {
 		return orderReplyTime;
 	}
-	public void setOrderReplyTime(Timestamp orderReplyTime) {
+	public void setOrderReplyTime(String orderReplyTime) {
 		this.orderReplyTime = orderReplyTime;
 	}
 	public long getId() {
@@ -65,17 +71,17 @@ public class Order implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public Timestamp getTimeOrdered() {
+	public String getTimeOrdered() {
 		return timeOrdered;
 	}
-	public void setTimeOrdered(Timestamp timeOrdered) {
+	public void setTimeOrdered(String timeOrdered) {
 		this.timeOrdered = timeOrdered;
 	}
 
-	public void setRequestedTimeToDeliver(Timestamp timeToDeliver) {
+	public void setRequestedTimeToDeliver(String timeToDeliver) {
 		this.requestedTimeToDeliver = timeToDeliver;
 	}
-	public Timestamp getRequestedTimeToDeliver() {
+	public String getRequestedTimeToDeliver() {
 		return requestedTimeToDeliver;
 	}
 	public String getFromLocation() {
@@ -96,31 +102,15 @@ public class Order implements Serializable {
 	public void setCustomerNote(String customerNote) {
 		this.customerNote = customerNote;
 	}
-	public ArrayList<Car> getCars() {
-		return cars;
+
+	public String getOrderReplyMessage() {
+		return orderReplyMessage;
 	}
-	public void setCars(ArrayList<Car> cars) {
-		this.cars = cars;
-	}
-	public String getOrderReply() {
-		return orderReply;
-	}
-	public void setOrderReply(String orderReply) {
-		this.orderReply = orderReply;
+	public void setOrderReplyMessage(String orderReplyMessage) {
+		this.orderReplyMessage = orderReplyMessage;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", customer=" + customer + ", company="
-				+ company + ", state=" + state + ", timeOrdered=" + timeOrdered
-				+ ", timeToDeliver=" + requestedTimeToDeliver + ", fromLocation="
-				+ fromLocation + ", toLocation=" + toLocation
-				+ ", customerNote=" + customerNote + ", cars=" + cars
-				+ ", orderReply=" + orderReply + "]";
-	}
-	
-	
 
 }
