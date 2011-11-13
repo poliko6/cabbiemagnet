@@ -9,7 +9,19 @@ import com.cabbiemagnet.dao.mapper.OrderRowMapper;
 import com.cabbiemagnet.dao.mapper.OrderedCarRowMapper;
 import com.cabbiemagnet.model.Order;
 import com.cabbiemagnet.model.OrderedCar;
-
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:44:54 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.dao.impl	
+ * @filename OrderDaoImpl.java
+ * @description 
+ * ================================================================================
+ */
 public class OrderDaoImpl implements IOrderDao {
 
 	private JdbcTemplate jdbcTemplate;

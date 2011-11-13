@@ -7,7 +7,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.cabbiemagnet.dao.ICustomerDao;
 import com.cabbiemagnet.dao.mapper.CustomerRowMapper;
 import com.cabbiemagnet.model.Customer;
-
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:44:47 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.dao.impl	
+ * @filename CustomerDaoImpl.java
+ * @description 
+ * ================================================================================
+ */
 public class CustomerDaoImpl implements ICustomerDao {
 
 	private JdbcTemplate jdbcTemplate;

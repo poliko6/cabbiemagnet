@@ -4,11 +4,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
- * Common class that has static singleton methods to be used from the services
- * TO BE REMOVED - only work in progress
  * 
+ * ================================================================================
  * @author anlazarov
- * 
+ * @date Nov 13, 2011
+ * @time 6:47:09 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.webservices	
+ * @filename Common.java
+ * @description 
+ * ================================================================================
  */
 public class Common {
 

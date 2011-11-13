@@ -14,16 +14,19 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import com.cabbiemagnet.model.Company;
 import com.cabbiemagnet.dao.*;
 
-// POJO, no interface no extends
-
-// The class registers its methods for the HTTP GET request using the @GET annotation. 
-// Using the @Produces annotation, it defines that it can deliver several MIME types,
-// text, XML and HTML. 
-
-// The browser requests per default the HTML MIME type.
-
-//Sets the path to base URL + /companies
-
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:47:42 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.webservices	
+ * @filename CompaniesResource.java
+ * @description 
+ * ================================================================================
+ */
 @Path("/companies")
 public class CompaniesResource {
 

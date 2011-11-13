@@ -9,13 +9,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.cabbiemagnet.dao.mapper.DateAdapter;
-
+/** 
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:46:37 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.model	
+ * @filename Order.java
+ * @description 
+ * ================================================================================
+ */
 @XmlRootElement(name = "Order")
 public class Order implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	private long id;
