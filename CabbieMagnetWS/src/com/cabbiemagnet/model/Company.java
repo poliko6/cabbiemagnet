@@ -16,6 +16,7 @@ public class Company implements Serializable {
 	private String password;
 	private String location;
 	private String rating;
+	
 	private ArrayList<Car> cars;
 	
 	public ArrayList<Car> getCars() {

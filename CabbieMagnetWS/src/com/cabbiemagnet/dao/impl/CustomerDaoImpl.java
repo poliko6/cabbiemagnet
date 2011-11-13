@@ -22,7 +22,10 @@ public class CustomerDaoImpl implements ICustomerDao {
 	
 	@Override
 	public void create(Customer customer) {
-		// TODO Auto-generated method stub
+
+		String sql = "insert into customer ( id, name ) values ( ?, ?)";
+		Object[] args = new Object[] { customer.getId(), customer.getName() };
+		this.jdbcTemplate.update(sql, args);
 
 	}
 
@@ -41,7 +44,9 @@ public class CustomerDaoImpl implements ICustomerDao {
 
 	@Override
 	public void update(Customer customer) {
-		// TODO Auto-generated method stub
+		String sql = "update customer set name = ? where id = ?";
+		Object[] args = new Object[] { customer.getName(), customer.getId() };
+		this.jdbcTemplate.update(sql, args);
 
 	}
 

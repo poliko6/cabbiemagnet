@@ -34,19 +34,17 @@ public class CompaniesResource {
 
 //	ApplicationContext context;
 
-//	public CompaniesResource()
-//	{
-//		context = new FileSystemXmlApplicationContext(
-//				"classpath:applicationContext.xml");
-//	}
+	ICompanyDao compDao;
+	
+	// default constructor that gets the DAO bean
+	public CompaniesResource()
+	{
+		compDao = (ICompanyDao) Common.getContext().getBean("compDao");
+	}
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ArrayList<Company> getCompanies() {
-
-		ICompanyDao compDao = (ICompanyDao) Common.getContext().getBean("compDao"); // get
-																		// compDao
-																		// bean
 
 		ArrayList<Company> companies = compDao.readAll();	// retrieve companies
 
@@ -63,10 +61,6 @@ public class CompaniesResource {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ArrayList<Company> getCompaniesByLocation(
 			@PathParam("location") String location) {
- 
-		ICompanyDao compDao = (ICompanyDao) Common.getContext().getBean("compDao"); // get
-																		// compDao
-																		// bean
 		
 		ArrayList<Company> companies = compDao.findByLocation(location);	// retrieve companies
 		

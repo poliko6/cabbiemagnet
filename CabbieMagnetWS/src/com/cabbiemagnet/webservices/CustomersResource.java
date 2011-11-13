@@ -15,37 +15,58 @@ import com.cabbiemagnet.model.Customer;
 
 @Path("/customers")
 public class CustomersResource {
-			
-		@GET
-		@Produces({ MediaType.APPLICATION_JSON })
-		public ArrayList<Customer> getCustomers() {
+	private ICustomerDao custDao;
 
-			ICustomerDao custDao = (ICustomerDao) Common.getContext().getBean("custDao"); // get compDao bean
+	public CustomersResource() {
+		custDao = (ICustomerDao) Common.getContext().getBean("custDao");
+	}
 
-			return custDao.readAll();
-		}
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public ArrayList<Customer> getCustomers() {
+		return custDao.readAll();
+	}
+
+	@GET
+	@Path("{id}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Customer getCustomer(@PathParam("id") long id) {
 		
-		@GET
-		@Path("{id}")
-		@Produces({ MediaType.APPLICATION_JSON })
-		public Customer getCustomer(@PathParam("id") long id)
+		Customer registeredCustomer = custDao.read(id); // check the db for this
+														// customer
+
+		if (registeredCustomer == null) // if the customer with id specified
+										// does not exist
 		{
-			ICustomerDao custDao = (ICustomerDao) Common.getContext().getBean("custDao"); // get compDao bean
-			
-			Customer customer = custDao.read(id);
-			if (customer == null)
-			{
-				throw new RuntimeException("Customer with id " + id + " does not exist!");
-			}
-			return customer;
+			// create new customer
+			Customer newCustomer = new Customer(); // create the customer
+			newCustomer.setId(id);
+			newCustomer.setName("User");
+			custDao.create(newCustomer); // send it for creation
+			return getCustomer(id); // return the created customer with another
+									// check in the db
 		}
+		return registeredCustomer; // return customer's information
+	}
+
+//	@POST
+//	@Path("{id}")
+//	@Produces({ MediaType.APPLICATION_JSON })
+//	@Consumes(MediaType.TEXT_PLAIN)
+//	public String PostShit(long id) {
+//		return "Hello, " + id;
+//	}
+	
+	@GET
+	@Path("{id}/changename/{newName}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Customer changeCustomerName(@PathParam("id") long id, @PathParam("newName") String newName)
+	{
+		Customer registeredCustomer = custDao.read(id); // check the db for this customer
+		registeredCustomer.setName(newName);
+		custDao.update(registeredCustomer);
 		
-		@POST
-		@Path("{id}")
-		@Produces({ MediaType.APPLICATION_JSON })
-		@Consumes(MediaType.TEXT_PLAIN)
-		public String PostShit(String id)
-		{
-			return "Hello, " + id;
-		}
+		return registeredCustomer;
+	}
+	
 }

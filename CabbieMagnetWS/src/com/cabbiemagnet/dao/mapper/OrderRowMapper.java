@@ -22,14 +22,14 @@ public class OrderRowMapper implements RowMapper<Order> {
 		order.setCompany(rs.getString("COMPANY_NAME"));
 		order.setCustomer(rs.getString("CUSTOMER_NAME"));
 		order.setState(rs.getString("ORDER_STATE"));
-		order.setTimeOrdered(rs.getString("TIME_ORDERED"));
-		order.setRequestedTimeToDeliver(rs.getString("REQUESTED_TIME_TO_DELIVER"));
+		order.setTimeOrdered(rs.getTimestamp("TIME_ORDERED"));
+		order.setRequestedTimeToDeliver(rs.getTimestamp("REQUESTED_TIME_TO_DELIVER"));
 		order.setFromLocation(rs.getString("FROM_LOCATION"));
 		order.setToLocation(rs.getString("TO_LOCATION"));
 		order.setCustomerNote(rs.getString("CUSTOMER_NOTE"));
 		order.setOrderReplyMessage(rs.getString("ORDER_REPLY_MESSAGE"));
-		order.setOrderReplyTime(rs.getString("ORDER_REPLY_TIME"));
-		order.setOrderReplyTimeToDeliver(rs.getString("ORDER_REPLY_TIME_TO_DELIVER"));
+		order.setOrderReplyTime(rs.getTimestamp("ORDER_REPLY_TIME"));
+		order.setOrderReplyTimeToDeliver(rs.getTimestamp("ORDER_REPLY_TIME_TO_DELIVER"));
 		return order;
 	}
 

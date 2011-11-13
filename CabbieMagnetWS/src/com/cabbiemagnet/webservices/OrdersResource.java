@@ -14,13 +14,17 @@ import com.cabbiemagnet.model.Order;
 @Path("/orders")
 public class OrdersResource {
 	
+	IOrderDao ordersDao;
+	
+	public OrdersResource()
+	{
+		ordersDao = (IOrderDao) Common.getContext().getBean("ordersDao"); // get compDao bean
+	}
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ArrayList<Order> getOrders() {
 
-		IOrderDao ordersDao = (IOrderDao) Common.getContext().getBean("ordersDao"); // get compDao bean
-
-		return ordersDao.readAll();
+				return ordersDao.readAll();
 	}
 
 }
