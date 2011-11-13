@@ -5,6 +5,19 @@ import java.sql.Timestamp;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:45:24 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.dao.mapper	
+ * @filename DateAdapter.java
+ * @description 
+ * ================================================================================
+ */
 public class DateAdapter extends XmlAdapter<String, Timestamp> {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

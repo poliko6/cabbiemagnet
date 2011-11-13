@@ -10,7 +10,19 @@ import javax.ws.rs.core.MediaType;
 import com.cabbiemagnet.dao.IOrderDao;
 import com.cabbiemagnet.model.Order;
 
-
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:47:57 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.webservices	
+ * @filename OrdersResource.java
+ * @description 
+ * ================================================================================
+ */
 @Path("/orders")
 public class OrdersResource {
 	

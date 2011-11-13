@@ -7,10 +7,19 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.cabbiemagnet.model.Order;
 
-
 /**
- * rowmapper is used by Spring to read a line from a database table 
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:45:42 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.dao.mapper	
+ * @filename OrderRowMapper.java
+ * @description rowmapper is used by Spring to read a line from a database table 
  * and to fill an instance of the class with the values
+ * ================================================================================
  */
 public class OrderRowMapper implements RowMapper<Order> {
 

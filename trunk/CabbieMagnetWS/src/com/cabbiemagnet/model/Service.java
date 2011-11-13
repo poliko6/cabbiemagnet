@@ -4,6 +4,19 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:46:56 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.model	
+ * @filename Service.java
+ * @description 
+ * ================================================================================
+ */
 @XmlRootElement
 public class Service implements Serializable {
 

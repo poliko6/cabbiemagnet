@@ -4,12 +4,22 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:46:48 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.model	
+ * @filename OrderedCar.java
+ * @description 
+ * ================================================================================
+ */
 @XmlRootElement
 public class OrderedCar implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private long orderId;
 	public long getOrderId() {

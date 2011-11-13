@@ -4,7 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:46:12 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.model	
+ * @filename Company.java
+ * @description 
+ * ================================================================================
+ */
 @XmlRootElement
 public class Company implements Serializable {
 

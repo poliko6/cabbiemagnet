@@ -10,7 +10,19 @@ import java.util.ArrayList;
 
 import com.cabbiemagnet.dao.ICompanyDao;
 import com.cabbiemagnet.dao.mapper.*;
-
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:44:41 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.dao.impl	
+ * @filename CompanyDaoImpl.java
+ * @description 
+ * ================================================================================
+ */
 public class CompanyDaoImpl implements ICompanyDao {
 
 	private JdbcTemplate jdbcTemplate;

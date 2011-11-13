@@ -13,6 +13,19 @@ import javax.ws.rs.core.MediaType;
 import com.cabbiemagnet.dao.ICustomerDao;
 import com.cabbiemagnet.model.Customer;
 
+/**
+ * 
+ * ================================================================================
+ * @author anlazarov
+ * @date Nov 13, 2011
+ * @time 6:47:51 PM
+ *								
+ * @project CabbieMagnetWS	
+ * @package com.cabbiemagnet.webservices	
+ * @filename CustomersResource.java
+ * @description 
+ * ================================================================================
+ */
 @Path("/customers")
 public class CustomersResource {
 	private ICustomerDao custDao;
