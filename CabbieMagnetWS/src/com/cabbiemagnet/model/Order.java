@@ -42,8 +42,7 @@ public class Order implements Serializable {
 	private String toLocation;
 	private String customerNote;
 	private String orderReplyMessage;
-
-	
+		
 	private Timestamp orderReplyTime;
 
 
