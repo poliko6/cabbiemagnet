@@ -72,19 +72,19 @@ public class CompanyDaoImpl implements ICompanyDao {
 		ArrayList<Service> services = new ArrayList<Service>();
 
 		
-		String sqlCars = "SELECT car.id, car.type, car.max_seats, car.max_handicapped_seats, car.max_hold_bags " +
-				"FROM company_has_cars " +
-				"JOIN company ON company.id = company_has_cars.company_id " +
-				"JOIN car ON car.id = company_has_cars.car_id " +
-				"WHERE company_has_cars.company_id = ?";
+		String sqlCars = "SELECT CAR.ID, CAR.type, CAR.max_seats, CAR.max_handicapped_seats, CAR.max_hold_bags " +
+				"FROM COMPANY_HAS_CARS " +
+				"JOIN COMPANY ON COMPANY.ID = COMPANY_HAS_CARS.company_id " +
+				"JOIN CAR ON CAR.id = COMPANY_HAS_CARS.CAR_ID " +
+				"WHERE COMPANY_HAS_CARS.company_id = ?";
 		
-		String sqlServices = "select service.id, service.name " +
-				"from car_has_services " +
-				"JOIN Service ON " +
-				"service.id = car_has_services.service_id " +
-				"JOIN Car ON " +
-				"car.id = car_has_services.car_id " +
-				"where car_has_services.car_id = ?";
+		String sqlServices = "select SERVICE.id, SERVICE.name " +
+				"from CAR_HAS_SERVICES " +
+				"JOIN SERVICE ON " +
+				"SERVICE.id = CAR_HAS_SERVICES.service_id " +
+				"JOIN CAR ON " +
+				"CAR.id = CAR_HAS_SERVICES.car_id " +
+				"where CAR_HAS_SERVICES.car_id = ?";
 		
 		// get all the companies
 		companies = (ArrayList<Company>) jdbcTemplate.query("select * from COMPANY", new CompanyRowMapper());

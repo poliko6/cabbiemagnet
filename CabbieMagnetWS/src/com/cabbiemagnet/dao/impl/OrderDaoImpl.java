@@ -43,36 +43,36 @@ public class OrderDaoImpl implements IOrderDao {
 	@Override
 	public ArrayList<Order> read(long customerId) {
 
-		String sqlGetOrder = " SELECT cab_order.id, "
-				+ "customer.name as customer_name, "
-				+ "company.name as company_name, "
-				+ "cab_order_state.name as order_state, "
-				+ "cab_order.time_ordered, "
-				+ "cab_order.time_to_deliver as requested_time_to_deliver, "
-				+ "cab_order.from_location, "
-				+ "cab_order.to_location, "
-				+ "cab_order.customer_note, "
-				+ "cab_order_reply.time_to_deliver as order_reply_time_to_deliver, "
-				+ "cab_order_reply.time_of_reply as order_reply_time, ( "
-				+ "SELECT message.message	"
-				+ "FROM cab_order_Reply "
-				+ "JOIN Message ON message.id = cab_order_reply.message_id "
-				+ "WHERE cab_order.id = cab_order_reply.cab_order_id ) AS order_reply_message "
-				+ "FROM cab_order "
-				+ "JOIN Customer ON customer.id = cab_order.customer_id "
-				+ "JOIN Company ON company.id = cab_order.company_id "
-				+ "JOIN cab_order_state ON cab_order_state.id = cab_order.state_id "
-				+ "LEFT JOIN cab_order_reply ON cab_order.id = cab_order_reply.cab_order_id " 
-				+ "WHERE customer.id = ? "
-				+ "Order by cab_order.id";
+		String sqlGetOrder =  "SELECT CAB_ORDER.ID, "
+				+ "CUSTOMER.NAME AS CUSTOMER_NAME, "
+				+ "COMPANY.NAME AS COMPANY_NAME, "
+				+ "CAB_ORDER_STATE.NAME AS ORDER_STATE, "
+				+ "CAB_ORDER.TIME_ORDERED, "
+				+ "CAB_ORDER.TIME_TO_DELIVER AS REQUESTED_TIME_TO_DELIVER, "
+				+ "CAB_ORDER.FROM_LOCATION, "
+				+ "CAB_ORDER.TO_LOCATION, "
+				+ "CAB_ORDER.CUSTOMER_NOTE, "
+				+ "CAB_ORDER_REPLY.TIME_TO_DELIVER AS ORDER_REPLY_TIME_TO_DELIVER, "
+				+ "CAB_ORDER_REPLY.TIME_OF_REPLY AS ORDER_REPLY_TIME, ( "
+				+ "SELECT MESSAGE.MESSAGE	"
+				+ "FROM CAB_ORDER_REPLY "
+				+ "JOIN MESSAGE ON MESSAGE.ID = CAB_ORDER_REPLY.MESSAGE_ID "
+				+ "WHERE CAB_ORDER.ID = CAB_ORDER_REPLY.CAB_ORDER_ID ) AS ORDER_REPLY_MESSAGE "
+				+ "FROM CAB_ORDER "
+				+ "JOIN CUSTOMER ON CUSTOMER.ID = CAB_ORDER.CUSTOMER_ID "
+				+ "JOIN COMPANY ON COMPANY.ID = CAB_ORDER.COMPANY_ID "
+				+ "JOIN CAB_ORDER_STATE ON CAB_ORDER_STATE.ID = CAB_ORDER.STATE_ID "
+				+ "LEFT JOIN CAB_ORDER_REPLY ON CAB_ORDER.ID = CAB_ORDER_REPLY.CAB_ORDER_ID " 
+				+ "WHERE CUSTOMER.ID = ? "
+				+ "ORDER BY CAB_ORDER.ID";
 		
 		String sqlGetOrderedCars = "SELECT " +
-				"car.type, " +
-				"cab_order_has_cars.quantity, " +
-				"cab_order_has_cars.cab_order_id " +
-				"FROM cab_order_has_cars " +
-				"JOIN car ON cab_order_has_cars.car_id = car.id " +
-				"WHERE cab_order_has_cars.cab_order_id = ?";
+				"CAR.TYPE, " +
+				"CAB_ORDER_HAS_CARS.QUANTITY, " +
+				"CAB_ORDER_HAS_CARS.CAB_ORDER_ID " +
+				"FROM CAB_ORDER_HAS_CARS " +
+				"JOIN CAR ON CAB_ORDER_HAS_CARS.CAR_ID = CAR.ID " +
+				"WHERE CAB_ORDER_HAS_CARS.CAB_ORDER_ID = ?";
 		
 		Object[] orderArgs = new Object[] { customerId };	// put the arguments for the query
 		
@@ -94,35 +94,35 @@ public class OrderDaoImpl implements IOrderDao {
 	@Override
 	public ArrayList<Order> readAll() {
 
-		String sqlGetOrder = " SELECT cab_order.id, "
-				+ "customer.name as customer_name, "
-				+ "company.name as company_name, "
-				+ "cab_order_state.name as order_state, "
-				+ "cab_order.time_ordered, "
-				+ "cab_order.time_to_deliver as requested_time_to_deliver, "
-				+ "cab_order.from_location, "
-				+ "cab_order.to_location, "
-				+ "cab_order.customer_note, "
-				+ "cab_order_reply.time_to_deliver as order_reply_time_to_deliver, "
-				+ "cab_order_reply.time_of_reply as order_reply_time, ( "
-				+ "SELECT message.message	"
-				+ "FROM cab_order_Reply "
-				+ "JOIN Message ON message.id = cab_order_reply.message_id "
-				+ "WHERE cab_order.id = cab_order_reply.cab_order_id ) AS order_reply_message "
-				+ "FROM cab_order "
-				+ "JOIN Customer ON customer.id = cab_order.customer_id "
-				+ "JOIN Company ON company.id = cab_order.company_id "
-				+ "JOIN cab_order_state ON cab_order_state.id = cab_order.state_id "
-				+ "LEFT JOIN cab_order_reply ON cab_order.id = cab_order_reply.cab_order_id "
-				+ "Order by cab_order.id";
+		String sqlGetOrder = " SELECT CAB_ORDER.ID, "
+				+ "CUSTOMER.NAME AS CUSTOMER_NAME, "
+				+ "COMPANY.NAME AS COMPANY_NAME, "
+				+ "CAB_ORDER_STATE.NAME AS ORDER_STATE, "
+				+ "CAB_ORDER.TIME_ORDERED, "
+				+ "CAB_ORDER.TIME_TO_DELIVER AS REQUESTED_TIME_TO_DELIVER, "
+				+ "CAB_ORDER.FROM_LOCATION, "
+				+ "CAB_ORDER.TO_LOCATION, "
+				+ "CAB_ORDER.CUSTOMER_NOTE, "
+				+ "CAB_ORDER_REPLY.TIME_TO_DELIVER AS ORDER_REPLY_TIME_TO_DELIVER, "
+				+ "CAB_ORDER_REPLY.TIME_OF_REPLY AS ORDER_REPLY_TIME, ( "
+				+ "SELECT MESSAGE.MESSAGE	"
+				+ "FROM CAB_ORDER_REPLY "
+				+ "JOIN MESSAGE ON MESSAGE.ID = CAB_ORDER_REPLY.MESSAGE_ID "
+				+ "WHERE CAB_ORDER.ID = CAB_ORDER_REPLY.CAB_ORDER_ID ) AS ORDER_REPLY_MESSAGE "
+				+ "FROM CAB_ORDER "
+				+ "JOIN CUSTOMER ON CUSTOMER.ID = CAB_ORDER.CUSTOMER_ID "
+				+ "JOIN COMPANY ON COMPANY.ID = CAB_ORDER.COMPANY_ID "
+				+ "JOIN CAB_ORDER_STATE ON CAB_ORDER_STATE.ID = CAB_ORDER.STATE_ID "
+				+ "LEFT JOIN CAB_ORDER_REPLY ON CAB_ORDER.ID = CAB_ORDER_REPLY.CAB_ORDER_ID "
+				+ "ORDER BY CAB_ORDER.ID";
 
 
 		String sqlGetOrderedCars = "SELECT " +
-				"car.type, " +
-				"cab_order_has_cars.quantity, " +
-				"cab_order_has_cars.cab_order_id " +
-				"FROM cab_order_has_cars " +
-				"JOIN car ON cab_order_has_cars.car_id = car.id ";
+				"CAR.TYPE, " +
+				"CAB_ORDER_HAS_CARS.QUANTITY, " +
+				"CAB_ORDER_HAS_CARS.CAB_ORDER_ID " +
+				"FROM CAB_ORDER_HAS_CARS " +
+				"JOIN CAR ON CAB_ORDER_HAS_CARS.CAR_ID = CAR.ID ";
 
 		ArrayList<Order> orders = (ArrayList<Order>) this.jdbcTemplate.query(
 				sqlGetOrder, new OrderRowMapper());	// query the db for all the orders

@@ -35,7 +35,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 	@Override
 	public void create(Customer customer) {
 
-		String sql = "insert into customer ( id, name ) values ( ?, ?)";
+		String sql = "INSERT INTO CUSTOMER (ID, NAME) VALUES ( ?, ?)";
 		Object[] args = new Object[] { customer.getId(), customer.getName() };
 		this.jdbcTemplate.update(sql, args);
 
@@ -43,7 +43,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 
 	@Override
 	public Customer read(long id) {
-		String sql = "SELECT * FROM Customer where id =?";
+		String sql = "SELECT * FROM CUSTOMER WHERE ID =?";
 		Object[] args = new Object[] { id};
 		ArrayList<Customer> customers = (ArrayList<Customer>) this.jdbcTemplate.query(sql,args, new CustomerRowMapper());
 
@@ -56,7 +56,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 
 	@Override
 	public void update(Customer customer) {
-		String sql = "update customer set name = ? where id = ?";
+		String sql = "UPDATE CUSTOMER SET NAME = ? WHERE ID = ?";
 		Object[] args = new Object[] { customer.getName(), customer.getId() };
 		this.jdbcTemplate.update(sql, args);
 
@@ -71,7 +71,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 	@Override
 	public ArrayList<Customer> readAll() {
 		
-		String sql = "SELECT * FROM Customer";
+		String sql = "SELECT * FROM CUSTOMER";
 		
 		return (ArrayList<Customer>) jdbcTemplate.query(sql, new CustomerRowMapper());
 		
