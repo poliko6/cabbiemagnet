@@ -21,7 +21,7 @@
 		<property name="jdbcUrl" value="${database.url}" />
 		<property name="user" value="${database.user}" />
 		<property name="password" value="${database.password}" />
-		<property name="initialPoolSize" value="${database.connections.start}" /> 
+		<property name="initialPoolSize" value="${database.connections.start}" />
 		<property name="maxPoolSize" value="${database.connections.max}" />
 		<property name="idleConnectionTestPeriod" value="270" />
 	</bean>
