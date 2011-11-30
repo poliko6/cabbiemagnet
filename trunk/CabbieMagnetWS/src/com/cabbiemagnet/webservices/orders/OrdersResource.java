@@ -3,8 +3,6 @@ package com.cabbiemagnet.webservices.orders;
 import java.net.URI;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,15 +12,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.bind.JAXBElement;
 
 import com.cabbiemagnet.dao.IOrderDao;
 import com.cabbiemagnet.model.Order;
 import com.cabbiemagnet.model.OrderedCar;
-import com.cabbiemagnet.model.Service;
 import com.cabbiemagnet.webservices.Common;
 
 /**
@@ -41,9 +36,8 @@ public class OrdersResource {
 	IOrderDao ordersDao;
 
 	@Context
-	UriInfo uriInfo;
-	@Context
-	private Request request;
+	private UriInfo uriInfo;
+
 
 	public OrdersResource() {
 		ordersDao = (IOrderDao) Common.getContext().getBean("ordersDao"); // get
@@ -62,13 +56,15 @@ public class OrdersResource {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("customer/{id}")
 	public ArrayList<Order> getOrdersByCustomer(@PathParam("id") long id) {
-
+		//return the orders for the specific customer
 		return ordersDao.read(id);
 	}
 
+	// create a new order from the given information
+	// can read only 1 car
 	@POST
+	@Path("/new")
 	@Consumes({ MediaType.APPLICATION_JSON })
-	@Produces({ MediaType.APPLICATION_JSON })
 	public Response createNewOrder(ArrayList<OrderedCar> cars,
 			@QueryParam("customer_id") long customerId,
 			@QueryParam("company_id") long companyId,
@@ -76,12 +72,13 @@ public class OrdersResource {
 			@QueryParam("from_loc") String from_loc,
 			@QueryParam("to_loc") String to_loc,
 			@QueryParam("customer_note") String customerNote) {
+		
+		// if no cars were specified return noContent response
 		if (cars == null) {
-			throw new RuntimeException("no cars were specified!");
+			return Response.noContent().entity("No cars were specified!").build();
 		}
+		
 		System.out.println("cars size: " + cars.size());
-	
-
 
 		// create an order from the query
 		Order order = new Order();
@@ -95,23 +92,22 @@ public class OrdersResource {
 
 		// post the order to the db
 		ordersDao.create(order);
-
 		URI orderUri = uriInfo.getAbsolutePathBuilder().build();
 		return Response.created(orderUri).build();
 	}
 
-	@POST
-	@Path("/test")
-	@Consumes({ MediaType.APPLICATION_JSON })
-	public void test(OrderedCar[] cars) {
-
-		System.out.println(cars.length);
-//		System.out.println(cars.get(0).toString());
-//		System.out.println(cars.get(1).toString());
-		// URI orderUri = uriInfo.getAbsolutePathBuilder().
-		// path(s.getValue().get(0).toString()).
-		// build();
-		// return Response.created(orderUri).build();
-	}
+//	@POST
+//	@Path("/test")
+//	@Consumes({ MediaType.APPLICATION_JSON })
+//	public void test(OrderedCar[] cars) {
+//
+//		System.out.println(cars.length);
+//		// System.out.println(cars.get(0).toString());
+//		// System.out.println(cars.get(1).toString());
+//		// URI orderUri = uriInfo.getAbsolutePathBuilder().
+//		// path(s.getValue().get(0).toString()).
+//		// build();
+//		// return Response.created(orderUri).build();
+//	}
 
 }

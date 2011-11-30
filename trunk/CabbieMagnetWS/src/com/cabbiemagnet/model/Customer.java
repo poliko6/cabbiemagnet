@@ -30,7 +30,7 @@ public class Customer implements Serializable {
 	
 	@XmlElement
 	private long id;
-	@XmlElement
+	@XmlElement (required = false)
 	private String name;
 	
 	public Customer() {}
