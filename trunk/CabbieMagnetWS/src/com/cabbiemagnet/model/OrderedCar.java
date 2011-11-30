@@ -2,6 +2,9 @@ package com.cabbiemagnet.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,20 +20,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @description 
  * ================================================================================
  */
-@XmlRootElement
+@XmlRootElement (name = "orderedCar")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class OrderedCar implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@XmlElement
+	private long carId;
+	@XmlElement
 	private long orderId;
+	@XmlElement
+	private String type;
+	@XmlElement
+	private int quantity;
+	
 	public long getOrderId() {
 		return orderId;
 	}
 	public void setOrderId(long orderId) {
-		this.orderId = orderId;
+		this.orderId = orderId; 
 	}
-	private String type;
-	private int quantity;
-	
 	public String getType() {
 		return type;
 	}
@@ -43,5 +53,17 @@ public class OrderedCar implements Serializable {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public long getCarId() {
+		return carId;
+	}
+	public void setCarId(long carId) {
+		this.carId = carId;
+	}
+	@Override
+	public String toString() {
+		return "OrderedCar [carId=" + carId + ", orderId=" + orderId
+				+ ", type=" + type + ", quantity=" + quantity + "]";
+	}
 
+	
 }

@@ -28,7 +28,9 @@ public class OrderRowMapper implements RowMapper<Order> {
 		
 		 Order order = new Order();
 		order.setId(rs.getLong("ID"));
+		order.setCompanyId(rs.getLong("COMPANY_ID"));
 		order.setCompany(rs.getString("COMPANY_NAME"));
+		order.setCustomerId(rs.getLong("CUSTOMER_ID"));
 		order.setCustomer(rs.getString("CUSTOMER_NAME"));
 		order.setState(rs.getString("ORDER_STATE"));
 		order.setTimeOrdered(rs.getTimestamp("TIME_ORDERED"));

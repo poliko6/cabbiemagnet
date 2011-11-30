@@ -17,22 +17,23 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @description 
  * ================================================================================
  */
-@XmlRootElement
+@XmlRootElement (name="service")
 public class Service implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	private long id;
+	
 	private String name;
 	
-	
-	
+	public Service() {};
+
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -47,7 +48,7 @@ public class Service implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Service [id=" + id + ", name=" + name + "]";
+		return "Service [id=" + getId() + ", name=" + getName() + "]";
 	}
 	
 	

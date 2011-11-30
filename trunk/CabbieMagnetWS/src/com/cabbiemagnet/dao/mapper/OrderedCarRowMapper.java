@@ -31,6 +31,7 @@ public class OrderedCarRowMapper implements RowMapper<OrderedCar> {
 		car.setOrderId(rs.getLong("CAB_ORDER_ID"));
 		car.setType(rs.getString("TYPE"));
 		car.setQuantity(rs.getInt("QUANTITY"));
+		car.setCarId(rs.getLong("CAR_ID"));
 		return car;
 	}
 

@@ -2,6 +2,9 @@ package com.cabbiemagnet.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 /**
  * 
@@ -16,7 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @description 
  * ================================================================================
  */
-@XmlRootElement
+@XmlRootElement(name = "customer")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Customer implements Serializable {
 	
 	/**
@@ -24,8 +28,13 @@ public class Customer implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@XmlElement
 	private long id;
+	@XmlElement
 	private String name;
+	
+	public Customer() {}
+	
 	public long getId() {
 		return id;
 	}

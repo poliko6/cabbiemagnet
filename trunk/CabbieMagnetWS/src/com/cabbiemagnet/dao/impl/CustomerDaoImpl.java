@@ -2,7 +2,11 @@ package com.cabbiemagnet.dao.impl;
 
 import java.util.ArrayList;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cabbiemagnet.dao.ICustomerDao;
 import com.cabbiemagnet.dao.mapper.CustomerRowMapper;
@@ -23,7 +27,8 @@ import com.cabbiemagnet.model.Customer;
 public class CustomerDaoImpl implements ICustomerDao {
 
 	private JdbcTemplate jdbcTemplate;
-	
+	private static Log logger = LogFactory.getLog(CustomerDaoImpl.class);
+
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
@@ -33,12 +38,12 @@ public class CustomerDaoImpl implements ICustomerDao {
 	}
 	
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Customer customer) {
-
-		String sql = "INSERT INTO CUSTOMER (ID, NAME) VALUES ( ?, ?)";
+		String sql = "INSERT INTO CUSTOMER (ID, NAME) VALUES ( ?, ?);";
 		Object[] args = new Object[] { customer.getId(), customer.getName() };
 		this.jdbcTemplate.update(sql, args);
-
+		logger.info("Inserted a new customer: " + customer.getId());
 	}
 
 	@Override
@@ -55,10 +60,12 @@ public class CustomerDaoImpl implements ICustomerDao {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update(Customer customer) {
 		String sql = "UPDATE CUSTOMER SET NAME = ? WHERE ID = ?";
 		Object[] args = new Object[] { customer.getName(), customer.getId() };
 		this.jdbcTemplate.update(sql, args);
+		logger.info("Customer: " + customer.getId() + " updated name to: " + customer.getName() );
 
 	}
 
