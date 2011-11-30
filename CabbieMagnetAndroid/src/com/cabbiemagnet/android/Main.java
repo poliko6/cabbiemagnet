@@ -31,7 +31,7 @@ public class Main extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listplaceholder);
         
-        ArrayList<HashMap<String, String>> mylist = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> mylist = new ArrayList<HashMap<String, String>>(); 
       
        
         JSONObject json = JSONfunctions.getJSONfromURL("http://87.104.116.90:666/CabbieMagnetWS/rest/companies");
