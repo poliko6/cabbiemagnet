@@ -4,48 +4,75 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.cabbiemagnet.dao.mapper.DateAdapter;
-/** 
+
+/**
  * 
- * ================================================================================
+ * ============================================================================
+ * ====
+ * 
  * @author anlazarov
  * @date Nov 13, 2011
  * @time 6:46:37 PM
- *								
- * @project CabbieMagnetWS	
- * @package com.cabbiemagnet.model	
+ * 
+ * @project CabbieMagnetWS
+ * @package com.cabbiemagnet.model
  * @filename Order.java
  * @description 
- * ================================================================================
+ *              ==================================================================
+ *              ==============
  */
-@XmlRootElement(name = "Order")
+@XmlRootElement(name = "order")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Order implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
+	@XmlElement
 	private long id;
+	@XmlElement 
+	private long customerId;
+	@XmlElement
 	private String customer;
+	@XmlElement
+	private long companyId;
+	@XmlElement 
 	private String company;
+	@XmlElement
 	private String state;
 
-	
+	@XmlElement(name = "timeOrdered")
+	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp timeOrdered;
 
-	
+	@XmlElement(name = "requestedTimeToDeliver", required = true)
+	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp requestedTimeToDeliver;
 
+	@XmlElement
 	private String fromLocation;
+	@XmlElement
 	private String toLocation;
+	@XmlElement
 	private String customerNote;
+	@XmlElement
 	private String orderReplyMessage;
-		
+
+	@XmlElement(name = "orderReplyTime")
+	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp orderReplyTime;
 
-
+	// annotate this element and give it a type adapter
+	// so that timestamps are translated correctly from the database
+	// we use this custom made adapter to do that
+	@XmlElement(name = "orderReplyTImeToDeliver")
+	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp orderReplyTimeToDeliver;
 
 	private ArrayList<OrderedCar> cars;
@@ -58,8 +85,6 @@ public class Order implements Serializable {
 		this.cars = cars;
 	}
 
-	@XmlElement(name = "orderReplyTImeToDeliver")
-	@XmlJavaTypeAdapter(DateAdapter.class)
 	public Timestamp getOrderReplyTimeToDeliver() {
 		return orderReplyTimeToDeliver;
 	}
@@ -67,9 +92,7 @@ public class Order implements Serializable {
 	public void setOrderReplyTimeToDeliver(Timestamp orderReplyTimeToDeliver) {
 		this.orderReplyTimeToDeliver = orderReplyTimeToDeliver;
 	}
-	
-	@XmlElement(name = "orderReplyTime")
-	@XmlJavaTypeAdapter(DateAdapter.class)
+
 	public Timestamp getOrderReplyTime() {
 		return orderReplyTime;
 	}
@@ -109,8 +132,7 @@ public class Order implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
-	@XmlElement(name = "timeOrdered", required=true)
-	@XmlJavaTypeAdapter(DateAdapter.class)
+
 	public Timestamp getTimeOrdered() {
 		return timeOrdered;
 	}
@@ -118,14 +140,11 @@ public class Order implements Serializable {
 	public void setTimeOrdered(Timestamp timeOrdered) {
 		this.timeOrdered = timeOrdered;
 	}
-	
-	
+
 	public void setRequestedTimeToDeliver(Timestamp timeToDeliver) {
 		this.requestedTimeToDeliver = timeToDeliver;
 	}
-	
-	@XmlElement(name = "requestedTimeToDeliver")
-	@XmlJavaTypeAdapter(DateAdapter.class)
+
 	public Timestamp getRequestedTimeToDeliver() {
 		return requestedTimeToDeliver;
 	}
@@ -164,6 +183,38 @@ public class Order implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+
+	public long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
+	
+	
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", customer=" + customer + ", company="
+				+ company + ", state=" + state + ", timeOrdered=" + timeOrdered
+				+ ", requestedTimeToDeliver=" + requestedTimeToDeliver
+				+ ", fromLocation=" + fromLocation + ", toLocation="
+				+ toLocation + ", customerNote=" + customerNote
+				+ ", orderReplyMessage=" + orderReplyMessage
+				+ ", orderReplyTime=" + orderReplyTime
+				+ ", orderReplyTimeToDeliver=" + orderReplyTimeToDeliver
+				+ ", cars=" + cars + "]";
 	}
 
 }

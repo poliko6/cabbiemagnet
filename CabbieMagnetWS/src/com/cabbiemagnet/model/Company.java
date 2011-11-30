@@ -3,6 +3,9 @@ package com.cabbiemagnet.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 /**
  * 
@@ -17,19 +20,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @description 
  * ================================================================================
  */
-@XmlRootElement
+@XmlRootElement (name = "company")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Company implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@XmlElement
 	private long id;
+	@XmlElement
 	private String name;
+	@XmlElement
 	private String loginName;
+	@XmlElement
 	private String password;
+	@XmlElement
 	private String location;
-	private String rating;
-	
+	@XmlElement
+	private String rating;	
+	@XmlElement(name = "car")
 	private ArrayList<Car> cars;
+	
+	public Company() {};	// jaxb likes this
 	
 	public ArrayList<Car> getCars() {
 		return cars;

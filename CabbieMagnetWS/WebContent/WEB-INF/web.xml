@@ -11,11 +11,37 @@
 		</servlet> -->
 
 	<servlet>
-		<servlet-name>CabbieMagnet REST Services</servlet-name>
+		<servlet-name>Companies REST Service</servlet-name>
 		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>com.cabbiemagnet.webservices</param-value>
+			<param-value>com.cabbiemagnet.webservices.companies</param-value>
+		</init-param>
+		<!-- <init-param>
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value> 
+		</init-param>   -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>Orders REST Service</servlet-name>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>com.cabbiemagnet.webservices.orders</param-value>
+		</init-param>
+		 <!--<init-param>
+			 <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value> 
+		</init-param>  -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>Customers REST Service</servlet-name>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>com.cabbiemagnet.webservices.customers</param-value>
 		</init-param>
 		<!-- <init-param>
 			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
@@ -24,8 +50,16 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CabbieMagnet REST Services</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<servlet-name>Companies REST Service</servlet-name>
+		<url-pattern>/companies/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Customers REST Service</servlet-name>
+		<url-pattern>/customers/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Orders REST Service</servlet-name>
+		<url-pattern>/orders/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Enable the application context -->

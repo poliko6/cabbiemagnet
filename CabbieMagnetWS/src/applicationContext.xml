@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                            http://www.springframework.org/schema/tx
+                            http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
 
 	<!-- set configuration file for JDBC -->
-
 	<bean id="propertyPlaceholder"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:database.properties" />
 	</bean>
 
-
-
 	<!-- using C3p0 pooled data source -->
-
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	<bean id="mysqlDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="${database.url}" />
 		<property name="user" value="${database.user}" />
 		<property name="password" value="${database.password}" />
-		<property name="initialPoolSize" value="${database.connections.start}" />
+		<property name="initialPoolSize" value="${database.connections.start}" /> 
 		<property name="maxPoolSize" value="${database.connections.max}" />
 		<property name="idleConnectionTestPeriod" value="270" />
 	</bean>
 
+	<!-- Transaction Manager -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mysqlDataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
 
+	<!-- JdbcTemplate -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<constructor-arg index="0" ref="dataSource" />
+		<constructor-arg index="0" ref="mysqlDataSource" />
+		<property name="dataSource" ref="mysqlDataSource" />
 	</bean>
 
 	<!-- DAO beans -->
 	<bean id="compDao" class="com.cabbiemagnet.dao.impl.CompanyDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-
-	<!-- DAO beans -->
 	<bean id="custDao" class="com.cabbiemagnet.dao.impl.CustomerDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-
-	<!-- DAO beans -->
 	<bean id="ordersDao" class="com.cabbiemagnet.dao.impl.OrderDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>

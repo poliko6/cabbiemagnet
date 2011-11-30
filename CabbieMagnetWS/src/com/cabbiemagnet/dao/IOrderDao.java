@@ -3,6 +3,7 @@ package com.cabbiemagnet.dao;
 import java.util.ArrayList;
 
 import com.cabbiemagnet.model.Order;
+import com.cabbiemagnet.model.OrderedCar;
 /**
  * 
  * ================================================================================
