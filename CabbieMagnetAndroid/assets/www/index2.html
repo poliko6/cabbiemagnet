@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>PhoneGap</title>
+
+<!-- PhoneGap -->
+<script type="text/javascript" charset="utf-8" src="js/phonegap-1.2.0.js"></script>
+
+<!--  jQueryMobile -->
+<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.0rc2.min.css" type="text/css" charset="utf-8" />
+<script type="text/javascript" src="jquery.mobile/jquery-1.6.4.min"></script>
+<script src="jquery.mobile/jquery.mobile-1.0rc2.min.js"></script>
+
+<!-- Our Script -->
+<script type="text/javascript" charset="utf-8" src="js/script.js"></script>
+
+
+	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
+	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />-->
+	<!-- <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>-->
+	<!-- <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>-->
+	
+
+</head>
+<body onload="init();">
+
+	<div data-role="page" data-theme="e" id="foo" >
+		<div data-role="header">
+			<h1>CabbieMagnet</h1>
+		</div>
+		
+		<div data-role="content" id="home">
+			<!--  start of page content -->
+			
+			 <a href="#two" data-role="button">Page 2</a>  
+			 <a	href="#one" data-role="button">Page 1</a>
+			
+		</div>		<!--  end of page content -->
+		</div>
+		
+		
+		<!-- page 1 -->
+		<div data-role="page" id ="one">
+		<div data-role="header">
+				<h2>Page 1</h2>
+			</div>
+			<div data-role="content">
+			<p>This is page 1, enjoy!</p>
+				<div data-role="collapsible" data-content-theme="e"
+					data-collapsed="true" id="locationmenu">
+					<h1>Toggle Location</h1>
+					<div id="loccontainer">
+						<div id="loctext"></div>
+						<div id="locdata"></div>
+					</div>
+				</div>
+				<div data-role="button" onclick="check_network();">DICKens</div>
+				
+				<p><a href="#home" data-direction="reverse" data-role="button" data-theme="b">Back to page "one"</a></p>	
+			</div> 
+		</div>
+		
+		<!-- page 2 -->
+		<div data-role="page" id="two" >
+			<div data-role="header">
+				<h2>Page 2</h2>
+			</div>
+			<div data-role="content" >
+			
+			<div data-role="button" onClick="getCompaniesJson();">Get Companies</div>
+			<div data-role="button" onclick="check_network();">CheckNetwork</div>	
+			<p><a href="#home" data-direction="reverse" data-role="button" data-theme="b">Back to page "one"</a></p>		
+			</div>	
+			
+		</div>
+		
+</body>
+</html>

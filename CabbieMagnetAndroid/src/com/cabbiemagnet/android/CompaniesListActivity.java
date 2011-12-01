@@ -6,14 +6,7 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.pxr.tutorial.xmltest.R;
-
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,12 +17,12 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-public class Main extends ListActivity {
+public class CompaniesListActivity extends ListActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listplaceholder);
+        setContentView(R.layout.companies_list);
         
         ArrayList<HashMap<String, String>> mylist = new ArrayList<HashMap<String, String>>(); 
       
@@ -65,7 +58,7 @@ public class Main extends ListActivity {
         	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
         		@SuppressWarnings("unchecked")
 				HashMap<String, String> o = (HashMap<String, String>) lv.getItemAtPosition(position);	        		
-        		Toast.makeText(Main.this, "ID '" + o.get("id") + "' was clicked.", Toast.LENGTH_SHORT).show(); 
+        		Toast.makeText(CompaniesListActivity.this, "ID '" + o.get("id") + "' was clicked.", Toast.LENGTH_SHORT).show(); 
 
 			}
 		});
