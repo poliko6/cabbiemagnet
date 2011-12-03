@@ -36,7 +36,7 @@ public class CompaniesActivity extends ListActivity {
 
 		// get the JSONobject requesting the REST service
 		JSONArray json = JSONfunctions.getJSONfromURL(
-				Globals.BASE_URL_COMPANIES + "viborg", Globals.METHOD_GET);
+				Globals.BASE_URL_COMPANIES + location, Globals.METHOD_GET);
 
 		try {
 			JSONArray companies = json;

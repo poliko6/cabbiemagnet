@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CabbieMagnet</string>
-    <string name="current_location_button">Find Current Location</string>
-    <string name="location_txt">no location so far</string>
+    <string name="location_txt">Enter location:</string>
     <string name="companies_txt">Companies</string>
-    <string name="welcome_txt">Welcome User - this is generic text</string>
+    <string name="welcome_txt">Welcome,</string>
     <string name="user_txt">User</string>
 </resources>

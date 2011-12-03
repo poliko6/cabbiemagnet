@@ -13,7 +13,7 @@
 
     <TextView
         android:id="@+id/welcome_txt"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="2dp"
@@ -23,27 +23,27 @@
 
     <TextView
         android:id="@+id/username_txt"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="2dp"
         android:text="@string/user_txt"
         android:textSize="13dp" />
 
-    <Button
-        android:id="@+id/current_location_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/current_location_button" />
-
     <TextView
         android:id="@+id/location_txt_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="@string/location_txt"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/location_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/company_button"
