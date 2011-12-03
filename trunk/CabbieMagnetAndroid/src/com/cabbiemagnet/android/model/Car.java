@@ -75,7 +75,7 @@ public class Car implements Serializable{
 	}
 
 	public void setMaxHoldBags(int maxHoldBags) {
-		maxHoldBags = maxHoldBags;
+		this.maxHoldBags = maxHoldBags;
 	}
 
 	@Override
