@@ -26,6 +26,10 @@ public class Company implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	@XmlElement (name="id")
 	private long id;
 	
@@ -39,60 +43,56 @@ public class Company implements Serializable {
 	private String password;
 	
 	@XmlElement (name = "location")
-	private String location;
+	private String location;	
 	
 	@XmlElement (name = "rating")
-	private String rating;	
+	private String rating;
 	
 	@XmlElement(name = "car")
-	private ArrayList<Car> cars;
+	private ArrayList<Car> cars;;	// jaxb likes this
 	
-	public Company() {};	// jaxb likes this
-	
+	public Company() {}
 	public ArrayList<Car> getCars() {
 		return cars;
-	}
-	public void setCars(ArrayList<Car> cars) {
-		this.cars = cars;
 	}
 	public long getId() {
 		return id;
 	}
-	public String getRating() {
-		return rating;
-	}
-	public void setRating(String rating) {
-		this.rating = rating;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public String getLocation() {
+		return location;
 	}
 	public String getLoginName() {
 		return loginName;
 	}
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public String getName() {
+		return name;
 	}
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public String getRating() {
+		return rating;
 	}
-	public String getLocation() {
-		return location;
+	public void setCars(ArrayList<Car> cars) {
+		this.cars = cars;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 	
 	@Override

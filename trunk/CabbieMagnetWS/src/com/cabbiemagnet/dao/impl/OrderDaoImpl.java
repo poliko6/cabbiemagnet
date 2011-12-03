@@ -35,18 +35,6 @@ public class OrderDaoImpl implements IOrderDao {
 	private JdbcTemplate jdbcTemplate;
 	private static Log logger = LogFactory.getLog(OrderDaoImpl.class);
 
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
-	protected long getInsertedID() {
-		return jdbcTemplate.queryForLong("SELECT LAST_INSERT_ID()");
-	}
-
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Order order) {
@@ -78,6 +66,20 @@ public class OrderDaoImpl implements IOrderDao {
 			logger.info("Inserted car for order: " + order.getId());
 		}
 		
+	}
+
+	@Override
+	public void delete(Order order) {
+		// TODO Auto-generated method stub
+
+	}
+
+	protected long getInsertedID() {
+		return jdbcTemplate.queryForLong("SELECT LAST_INSERT_ID()");
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
 	}
 
 	@Override
@@ -232,14 +234,12 @@ public class OrderDaoImpl implements IOrderDao {
 		return orders;
 	}
 
-	@Override
-	public void update(Order order) {
-		// TODO Auto-generated method stub
-
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@Override
-	public void delete(Order order) {
+	public void update(Order order) {
 		// TODO Auto-generated method stub
 
 	}

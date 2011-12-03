@@ -19,11 +19,11 @@ import com.cabbiemagnet.model.Customer;
 public interface ICustomerDao {
 	
 	void create(Customer customer);
-	Customer read(long id);
-	void update(Customer customer);
 	void delete(Customer customer);
-	
+	Customer read(long id);
 	ArrayList<Customer> readAll();
+	
+	void update(Customer customer);
 
 	
 

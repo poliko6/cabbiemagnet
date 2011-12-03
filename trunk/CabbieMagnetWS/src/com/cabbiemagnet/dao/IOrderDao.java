@@ -3,7 +3,6 @@ package com.cabbiemagnet.dao;
 import java.util.ArrayList;
 
 import com.cabbiemagnet.model.Order;
-import com.cabbiemagnet.model.OrderedCar;
 /**
  * 
  * ================================================================================
@@ -20,10 +19,10 @@ import com.cabbiemagnet.model.OrderedCar;
 public interface IOrderDao {
 	
 	void create(Order order);
+	void delete(Order order);
 	ArrayList<Order> read(long customerId);
 	ArrayList<Order> readAll();
 	void update(Order order);
-	void delete(Order order);
 	
 
 }
