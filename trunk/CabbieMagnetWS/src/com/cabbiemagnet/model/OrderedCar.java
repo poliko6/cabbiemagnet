@@ -20,21 +20,26 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @description 
  * ================================================================================
  */
-@XmlRootElement (name = "orderedCar")
+@XmlRootElement (name = "ordered_car")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OrderedCar implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement
+	@XmlElement (name = "car_id")
 	private long carId;
-	@XmlElement
+	
+	@XmlElement (name="order_id")
 	private long orderId;
-	@XmlElement
+	
+	@XmlElement (name = "type")
 	private String type;
-	@XmlElement
+	
+	@XmlElement (name = "quantity")
 	private int quantity;
 	
+	
+	// getters and setters
 	public long getOrderId() {
 		return orderId;
 	}

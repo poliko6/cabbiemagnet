@@ -26,18 +26,24 @@ public class Company implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement
+	@XmlElement (name="id")
 	private long id;
-	@XmlElement
+	
+	@XmlElement (name="name")
 	private String name;
-	@XmlElement
+	
+	@XmlElement (name="login_name")
 	private String loginName;
-	@XmlElement
+	
+	@XmlElement (name = "password")
 	private String password;
-	@XmlElement
+	
+	@XmlElement (name = "location")
 	private String location;
-	@XmlElement
+	
+	@XmlElement (name = "rating")
 	private String rating;	
+	
 	@XmlElement(name = "car")
 	private ArrayList<Car> cars;
 	
