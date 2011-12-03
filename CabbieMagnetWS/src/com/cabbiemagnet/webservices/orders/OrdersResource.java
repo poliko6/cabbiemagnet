@@ -45,21 +45,6 @@ public class OrdersResource {
 																			// bean
 	}
 
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public ArrayList<Order> getOrders() {
-
-		return ordersDao.readAll();
-	}
-
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("customer/{id}")
-	public ArrayList<Order> getOrdersByCustomer(@PathParam("id") long id) {
-		//return the orders for the specific customer
-		return ordersDao.read(id);
-	}
-
 	// create a new order from the given information
 	// can read only 1 car
 	@POST
@@ -94,6 +79,21 @@ public class OrdersResource {
 		ordersDao.create(order);
 		URI orderUri = uriInfo.getAbsolutePathBuilder().build();
 		return Response.created(orderUri).build();
+	}
+
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public ArrayList<Order> getOrders() {
+
+		return ordersDao.readAll();
+	}
+
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("customer/{id}")
+	public ArrayList<Order> getOrdersByCustomer(@PathParam("id") long id) {
+		//return the orders for the specific customer
+		return ordersDao.read(id);
 	}
 
 //	@POST

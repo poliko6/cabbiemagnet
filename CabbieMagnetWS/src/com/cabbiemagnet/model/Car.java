@@ -50,48 +50,48 @@ public class Car implements Serializable{
 		return id;
 	}
 
-	public ArrayList<Service> getServices() {
-		return services;
-	}
-
-	public void setServices(ArrayList<Service> services) {
-		this.services = services;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public int getMaxSeats() {
-		return maxSeats;
-	}
-
-	public void setMaxSeats(int maxSeats) {
-		this.maxSeats = maxSeats;
-	}
-
 	public int getMaxHandicappedSeats() {
 		return maxHandicappedSeats;
-	}
-
-	public void setMaxHandicappedSeats(int maxHandicappedSeats) {
-		this.maxHandicappedSeats = maxHandicappedSeats;
 	}
 
 	public int getMaxHoldBags() {
 		return maxHoldBags;
 	}
 
+	public int getMaxSeats() {
+		return maxSeats;
+	}
+
+	public ArrayList<Service> getServices() {
+		return services;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setMaxHandicappedSeats(int maxHandicappedSeats) {
+		this.maxHandicappedSeats = maxHandicappedSeats;
+	}
+
 	public void setMaxHoldBags(int maxHoldBags) {
-		maxHoldBags = maxHoldBags;
+		this.maxHoldBags = maxHoldBags;
+	}
+
+	public void setMaxSeats(int maxSeats) {
+		this.maxSeats = maxSeats;
+	}
+
+	public void setServices(ArrayList<Service> services) {
+		this.services = services;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Override

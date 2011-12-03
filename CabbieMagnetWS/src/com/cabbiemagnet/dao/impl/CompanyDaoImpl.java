@@ -27,31 +27,6 @@ public class CompanyDaoImpl implements ICompanyDao {
 
 	private JdbcTemplate jdbcTemplate;
 	
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
-	@Override
-	public void save(Company company) {
-
-		String sql = "INSERT INTO COMPANIES (NAME, LOCATION) VALUES(?,?)";
-		Object[] args = new Object[] { company.getName(), company.getLocation() };
-		int types[] = new int[] { Types.VARCHAR, Types.VARCHAR };
-
-		jdbcTemplate.update(sql, args, types);
-
-	}
-
-	@Override
-	public void update(Company company) {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void delete(Company company) {
 		// TODO Auto-generated method stub
@@ -108,6 +83,10 @@ public class CompanyDaoImpl implements ICompanyDao {
 		return companies;
 	}
 
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
 	@Override
 	public ArrayList<Company> readAll() {
 		ArrayList<Company> companies = new ArrayList<Company>();
@@ -153,6 +132,27 @@ public class CompanyDaoImpl implements ICompanyDao {
 
 		
 		return companies;
+	}
+
+	@Override
+	public void save(Company company) {
+
+		String sql = "INSERT INTO COMPANIES (NAME, LOCATION) VALUES(?,?)";
+		Object[] args = new Object[] { company.getName(), company.getLocation() };
+		int types[] = new int[] { Types.VARCHAR, Types.VARCHAR };
+
+		jdbcTemplate.update(sql, args, types);
+
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
+	public void update(Company company) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

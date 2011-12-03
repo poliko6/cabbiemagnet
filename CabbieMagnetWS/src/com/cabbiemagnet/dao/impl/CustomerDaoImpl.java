@@ -29,14 +29,6 @@ public class CustomerDaoImpl implements ICustomerDao {
 	private JdbcTemplate jdbcTemplate;
 	private static Log logger = LogFactory.getLog(CustomerDaoImpl.class);
 
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Customer customer) {
@@ -44,6 +36,16 @@ public class CustomerDaoImpl implements ICustomerDao {
 		Object[] args = new Object[] { customer.getId(), customer.getName() };
 		this.jdbcTemplate.update(sql, args);
 		logger.info("Inserted a new customer: " + customer.getId());
+	}
+
+	@Override
+	public void delete(Customer customer) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
 	}
 
 	@Override
@@ -60,6 +62,19 @@ public class CustomerDaoImpl implements ICustomerDao {
 	}
 
 	@Override
+	public ArrayList<Customer> readAll() {
+		
+		String sql = "SELECT * FROM CUSTOMER";
+		
+		return (ArrayList<Customer>) jdbcTemplate.query(sql, new CustomerRowMapper());
+		
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update(Customer customer) {
 		String sql = "UPDATE CUSTOMER SET NAME = ? WHERE ID = ?";
@@ -67,21 +82,6 @@ public class CustomerDaoImpl implements ICustomerDao {
 		this.jdbcTemplate.update(sql, args);
 		logger.info("Customer: " + customer.getId() + " updated name to: " + customer.getName() );
 
-	}
-
-	@Override
-	public void delete(Customer customer) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public ArrayList<Customer> readAll() {
-		
-		String sql = "SELECT * FROM CUSTOMER";
-		
-		return (ArrayList<Customer>) jdbcTemplate.query(sql, new CustomerRowMapper());
-		
 	}
 
 }

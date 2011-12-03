@@ -48,30 +48,29 @@ public class CustomersResource {
 	}
 	
 	
-	// get all the customer
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public ArrayList<Customer> getCustomers() {
-		return custDao.readAll();
-	}
-
-	@GET
-	@Path("{id}")
-	//@Produces({ MediaType.APPLICATION_JSON })
-	public Response getCustomer(@PathParam("id") long id) {
-
+	@PUT
+	@Path("/change")
+	public Response changeCustomerName(@QueryParam("id") long id,
+			@DefaultValue ("User") @QueryParam("name") String newName) {
 		Response res;
 
-		// get customer from db
-		Customer c = custDao.read(id);
-
-		// check if customer exists
-		if (c == null) {
-			res = Response.noContent().build();
-		} else {
-			res = Response.ok(c.getName()).build();
+		if (newName.equals(" ")) { newName = "User"; }
+		
+		Customer registeredCustomer = custDao.read(id); // check the db for this
+														// customer
+		if (registeredCustomer == null) {
+			res = Response.notModified().build();
 		}
-		return res; // return customer's name only text/plain
+		// customer exists
+		else {
+			registeredCustomer.setName(newName);
+			custDao.update(registeredCustomer);
+
+			// response HTTP OK 200 and return the name in the body of the message
+			res = Response.ok().entity(registeredCustomer.getName()).build();
+		}
+
+		return res;
 	}
 
 	@POST
@@ -99,29 +98,30 @@ public class CustomersResource {
 		return res; // return customer's information
 	}
 
-	@PUT
-	@Path("/change")
-	public Response changeCustomerName(@QueryParam("id") long id,
-			@DefaultValue ("User") @QueryParam("name") String newName) {
+	@GET
+	@Path("{id}")
+	//@Produces({ MediaType.APPLICATION_JSON })
+	public Response getCustomer(@PathParam("id") long id) {
+
 		Response res;
 
-		if (newName.equals(" ")) { newName = "User"; }
-		
-		Customer registeredCustomer = custDao.read(id); // check the db for this
-														// customer
-		if (registeredCustomer == null) {
-			res = Response.notModified().build();
-		}
-		// customer exists
-		else {
-			registeredCustomer.setName(newName);
-			custDao.update(registeredCustomer);
+		// get customer from db
+		Customer c = custDao.read(id);
 
-			// response HTTP OK 200 and return the name in the body of the message
-			res = Response.ok().entity(registeredCustomer.getName()).build();
+		// check if customer exists
+		if (c == null) {
+			res = Response.noContent().build();
+		} else {
+			res = Response.ok(c.getName()).build();
 		}
+		return res; // return customer's name only text/plain
+	}
 
-		return res;
+	// get all the customer
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public ArrayList<Customer> getCustomers() {
+		return custDao.readAll();
 	}
 
 }

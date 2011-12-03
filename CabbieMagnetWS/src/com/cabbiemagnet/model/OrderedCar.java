@@ -39,30 +39,30 @@ public class OrderedCar implements Serializable {
 	private int quantity;
 	
 	
+	public long getCarId() {
+		return carId;
+	}
 	// getters and setters
 	public long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(long orderId) {
-		this.orderId = orderId; 
+	public int getQuantity() {
+		return quantity;
 	}
 	public String getType() {
 		return type;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setCarId(long carId) {
+		this.carId = carId;
 	}
-	public int getQuantity() {
-		return quantity;
+	public void setOrderId(long orderId) {
+		this.orderId = orderId; 
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public long getCarId() {
-		return carId;
-	}
-	public void setCarId(long carId) {
-		this.carId = carId;
+	public void setType(String type) {
+		this.type = type;
 	}
 	@Override
 	public String toString() {
