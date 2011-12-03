@@ -28,9 +28,9 @@ public class Customer implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement
+	@XmlElement (name = "id")
 	private long id;
-	@XmlElement (required = false)
+	@XmlElement (name="name")
 	private String name;
 	
 	public Customer() {}

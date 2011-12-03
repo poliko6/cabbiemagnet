@@ -34,49 +34,60 @@ public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@XmlElement
+	@XmlElement (name = "id")
 	private long id;
-	@XmlElement 
+	
+	@XmlElement (name = "customer_id")
 	private long customerId;
-	@XmlElement
+	@XmlElement ( name = "customer_name")
 	private String customer;
-	@XmlElement
+	
+	@XmlElement (name = "company_id")
 	private long companyId;
-	@XmlElement 
+	@XmlElement (name = "company_name")
 	private String company;
-	@XmlElement
+	
+	@XmlElement (name = "order_state")
 	private String state;
 
-	@XmlElement(name = "timeOrdered")
+	@XmlElement(name = "time_ordered")
 	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp timeOrdered;
 
-	@XmlElement(name = "requestedTimeToDeliver", required = true)
+	@XmlElement(name = "requested_time_to_deliver", required = true)
 	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp requestedTimeToDeliver;
 
-	@XmlElement
+	@XmlElement (name = "from_location")
 	private String fromLocation;
-	@XmlElement
+	
+	@XmlElement (name = "to_location")
 	private String toLocation;
-	@XmlElement
+	
+	@XmlElement (name = "customer_note")
 	private String customerNote;
-	@XmlElement
+	
+	@XmlElement (name = "replied_message")
 	private String orderReplyMessage;
 
-	@XmlElement(name = "orderReplyTime")
+	@XmlElement(name = "replied_time")
 	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp orderReplyTime;
 
 	// annotate this element and give it a type adapter
 	// so that timestamps are translated correctly from the database
 	// we use this custom made adapter to do that
-	@XmlElement(name = "orderReplyTImeToDeliver")
+	@XmlElement(name = "replied_time_to_deliver")
 	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Timestamp orderReplyTimeToDeliver;
 
+	@XmlElement(name = "car")
 	private ArrayList<OrderedCar> cars;
 
+	
+	
+	
+	
 	public ArrayList<OrderedCar> getCars() {
 		return cars;
 	}

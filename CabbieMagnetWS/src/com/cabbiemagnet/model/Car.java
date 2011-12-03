@@ -26,16 +26,21 @@ public class Car implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement
+	@XmlElement (name="id")
 	private long id;
-	@XmlElement  
+	
+	@XmlElement (name = "type")
 	private String type;
-	@XmlElement
+	
+	@XmlElement (name="max_seats")
 	private int maxSeats;
-	@XmlElement
+	
+	@XmlElement (name="max_handicapped_seats")
 	private int maxHandicappedSeats;
-	@XmlElement
-	private int MaxHoldBags;
+	
+	@XmlElement (name="max_hold_bags")
+	private int maxHoldBags;
+	
 	@XmlElement (name = "service")
 	private ArrayList<Service> services;
 
@@ -82,18 +87,18 @@ public class Car implements Serializable{
 	}
 
 	public int getMaxHoldBags() {
-		return MaxHoldBags;
+		return maxHoldBags;
 	}
 
 	public void setMaxHoldBags(int maxHoldBags) {
-		MaxHoldBags = maxHoldBags;
+		maxHoldBags = maxHoldBags;
 	}
 
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", type=" + type + ", maxSeats=" + maxSeats
 				+ ", maxHandicappedSeats=" + maxHandicappedSeats
-				+ ", MaxHoldBags=" + MaxHoldBags + "]";
+				+ ", MaxHoldBags=" + maxHoldBags + "]";
 	}
 	
 	
