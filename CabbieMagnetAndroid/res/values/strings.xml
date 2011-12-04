@@ -2,7 +2,20 @@
 <resources>
     <string name="app_name">CabbieMagnet</string>
     <string name="location_txt">Enter location:</string>
-    <string name="companies_txt">Companies</string>
+    <string name="companies_txt">Select company</string>
     <string name="welcome_txt">Welcome,</string>
     <string name="user_txt">User</string>
+    <string name="internet_no_connection">No Internet connection!</string>
+    <string name="findme">Find Me!</string>
+    <string name="from">From address:</string>
+    <string name="from_city_text">From city:</string>
+    <string name="comapany_label_text">Company: </string>
+    <string name="to_address_label">To Address:</string>
+    <string name="to_city_label">To city:</string>
+    <string name="edit_username_text">Edit Username</string>
+    <string name="new_order_text">Book a Cab!</string>
+    <string name="view_orders_text">View old bookings</string>
+    <string name="phone_number_text">Phonenumber</string>
+    <string name="login_txt">Login</string>
+    <string name="register_text">Register</string>
 </resources>

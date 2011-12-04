@@ -1,55 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:padding="7dp" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/cm_logo" />
+    android:gravity="center" >
 
     <TextView
         android:id="@+id/welcome_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_alignParentLeft="true"
         android:padding="2dp"
         android:text="@string/welcome_txt"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/username_txt"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/phonenumber_field"
+        android:layout_width="218dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="2dp"
-        android:text="@string/user_txt"
-        android:textSize="13dp" />
-
-    <TextView
-        android:id="@+id/location_txt_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/location_txt"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/welcome_txt"
+        android:layout_toLeftOf="@+id/editName_button"
+        android:inputType="number" />
 
     <EditText
-        android:id="@+id/location_textfield"
+        android:id="@+id/username_field"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <requestFocus />
-    </EditText>
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/phonenumber_field"
+        android:layout_toLeftOf="@+id/editName_button" />
 
     <Button
-        android:id="@+id/company_button"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/companies_txt" />
+        android:layout_alignBaseline="@+id/phonenumber_field"
+        android:layout_alignBottom="@+id/phonenumber_field"
+        android:layout_toRightOf="@+id/phonenumber_field"
+        android:text="@string/login_txt" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/username_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/welcome_txt"
+        android:layout_alignBottom="@+id/welcome_txt"
+        android:layout_toRightOf="@+id/welcome_txt"
+        android:text="@string/user_txt"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/username_field"
+        android:src="@drawable/cm_logo" />
+
+    <Button
+        android:id="@+id/editName_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/phonenumber_field"
+        android:text="@string/edit_username_text" />
+
+    <Button
+        android:id="@+id/new_order_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/username_field"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="30dp"
+        android:text="@string/new_order_text" />
+
+    <Button
+        android:id="@+id/view_orders_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_order_button"
+        android:layout_toLeftOf="@+id/editName_button"
+        android:text="@string/view_orders_text" />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/login_button"
+        android:layout_alignBottom="@+id/login_button"
+        android:layout_alignParentRight="true"
+        android:text="@string/register_text" />
+
+</RelativeLayout>
