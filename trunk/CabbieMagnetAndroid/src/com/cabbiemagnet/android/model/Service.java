@@ -1,6 +1,5 @@
 package com.cabbiemagnet.android.model;
 
-import java.io.Serializable;
 
 /**
  * 
@@ -15,7 +14,7 @@ import java.io.Serializable;
  * @description 
  * ================================================================================
  */
-public class Service implements Serializable {
+public class Service implements java.io.Serializable {
 
 	/**
 	 * 

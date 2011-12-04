@@ -5,7 +5,19 @@
       android:versionName="1.0">
     <uses-sdk android:minSdkVersion="8" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+  
+    
+ 
+    
+
     <application android:icon="@drawable/ic_launcher" android:label="@string/app_name">
+       	
+       	<uses-library android:name="com.google.android.maps" />
+        
         <activity android:name=".Main"
                   android:label="@string/app_name"
                   android:configChanges="keyboardHidden|orientation">
@@ -14,15 +26,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity android:name=".CompaniesActivity">
             <intent-filter> 
                 <action android:name="android.intent.action.VIEW" /> 
                 <category android:name="android.intent.category.DEFAULT" /> 
             </intent-filter> 
         </activity>
-             
+        
+        <activity android:name=".NewOrderActivity">
+            <intent-filter> 
+                <action android:name="android.intent.action.VIEW" /> 
+                <category android:name="android.intent.category.DEFAULT" /> 
+            </intent-filter> 
+        </activity>
+        
+              <activity android:name=".GoogleMapsView" android:theme="@android:style/Theme.NoTitleBar">
+        <intent-filter> 
+                <action android:name="android.intent.action.VIEW" /> 
+                <category android:name="android.intent.category.DEFAULT" /> 
+            </intent-filter> 
+        </activity>
     </application>
-
-	<uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
