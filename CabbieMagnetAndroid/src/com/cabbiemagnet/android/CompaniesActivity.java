@@ -12,7 +12,9 @@ import com.cabbiemagnet.android.model.Company;
 import com.cabbiemagnet.android.model.Service;
 import com.cabbiemagnet.android.services.CompanyService;
 
+import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class CompaniesActivity extends ListActivity {
 
 	CompanyService companyService;
-
+	ArrayList<Company> companiesObjList;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -39,7 +41,7 @@ public class CompaniesActivity extends ListActivity {
 		// create the service
 		companyService = new CompanyService();
 		// get the companies
-		ArrayList<Company> companiesObjList = companyService
+		companiesObjList = companyService
 				.getCompanies(location);
 
 		ArrayList<HashMap<String, String>> mylist = new ArrayList<HashMap<String, String>>();
@@ -70,11 +72,19 @@ public class CompaniesActivity extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				@SuppressWarnings("unchecked")
-				HashMap<String, String> o = (HashMap<String, String>) lv
-						.getItemAtPosition(position);
-				Toast.makeText(CompaniesActivity.this,
-						"ID '" + o.get("id") + "' was clicked.",
-						Toast.LENGTH_SHORT).show();
+				HashMap<String, String> o = (HashMap<String, String>) lv.getItemAtPosition(position);
+				int compItem = Integer.valueOf(o.get("id"));
+				Company sc = companiesObjList.get(compItem);
+				
+				Bundle b = new Bundle();
+				b.putString("company_name", sc.getName());
+				b.putLong("company_id", sc.getId());
+				
+				Intent resultIntent = new Intent();
+				resultIntent.putExtras(b);
+				setResult(Activity.RESULT_OK, resultIntent);
+				finish();
+				//Toast.makeText(CompaniesActivity.this,"ID '" + o.get("id") + "' was clicked.", Toast.LENGTH_SHORT).show();
 
 			}
 		});

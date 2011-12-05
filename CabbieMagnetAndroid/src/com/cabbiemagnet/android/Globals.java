@@ -11,5 +11,9 @@ public class Globals {
 	public final static String BASE_URL_CUSTOMERS_CHANGE = "http://87.104.116.90:666/CabbieMagnetWS/customers/change";
 	
 	
-	public final static int ACTIVITY_COMPANIES = 1;
+	
+	public static final int ACTIVITY_GOOGLE_MAPS_FROM = 0;
+	public static final int ACTIVITY_GOOGLE_MAPS_TO = 1;
+	public final static int ACTIVITY_COMPANIES = 2;
+
 }
