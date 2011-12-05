@@ -131,6 +131,11 @@ public class Main extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent (Main.this, ReviewOrdersActivity.class);
+				Bundle b = new Bundle();
+				String phonenum = phoneNumberField.getText().toString();
+				b.putString("phonenum", phonenum);
+				intent.putExtras(b);
+				Main.this.startActivity(intent);
 				
 				try {
 					orderService.getOrders(phoneNumberField.getText().toString());

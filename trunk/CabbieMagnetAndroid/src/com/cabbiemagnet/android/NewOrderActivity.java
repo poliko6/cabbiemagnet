@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NewOrderActivity extends Activity {
@@ -29,12 +30,21 @@ public class NewOrderActivity extends Activity {
 	/* fields & buttons */
 	Button findLocation;
 	Button getCompanies;
+	Button getMapsFromButton;
+	Button getMapsToButton;
+
 	EditText fromAddress;
 	EditText toAddress;
 	EditText fromCity;
 	EditText toCity;
-	
+
+	TextView companyLabel;
+
 	Order newOrder;
+
+	boolean getMapFromWasPressed = false;
+	boolean getMapToWasPressed = false;
+	boolean findMeWasPressed = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,11 +54,20 @@ public class NewOrderActivity extends Activity {
 
 		findLocation = (Button) findViewById(R.id.findme_button);
 		getCompanies = (Button) findViewById(R.id.get_company_button);
+		getMapsFromButton = (Button) findViewById(R.id.get_map_button);
+		getMapsToButton = (Button) findViewById(R.id.get_from_onmap_button);
+
 		fromAddress = (EditText) findViewById(R.id.from_address_field);
 		toAddress = (EditText) findViewById(R.id.to_address_field);
 		fromCity = (EditText) findViewById(R.id.from_city_field);
 		toCity = (EditText) findViewById(R.id.to_city_field);
 
+		companyLabel = (TextView) findViewById(R.id.company_label);
+
+		setOnClickListeners();
+	}
+
+	private void setOnClickListeners() {
 		getCompanies.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -59,7 +78,8 @@ public class NewOrderActivity extends Activity {
 				String location = fromCity.getText().toString();
 				b.putString("location", location);
 				intent.putExtras(b);
-				NewOrderActivity.this.startActivity(intent);
+				NewOrderActivity.this.startActivityForResult(intent,
+						Globals.ACTIVITY_COMPANIES);
 			}
 		});
 
@@ -67,6 +87,26 @@ public class NewOrderActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				findMeWasPressed = true;
+				getLocation();
+			}
+		});
+
+		getMapsFromButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				getMapFromWasPressed = true;
+				getLocation();
+
+			}
+		});
+
+		getMapsToButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				getMapToWasPressed = true;
 				getLocation();
 			}
 		});
@@ -100,7 +140,35 @@ public class NewOrderActivity extends Activity {
 				currentLocation = location;
 
 				// do after location is found
-				getLocationAddress();
+				if (findMeWasPressed) {
+					getLocationAddress();
+				}
+
+				if (getMapFromWasPressed) {
+
+					getMapFromWasPressed = false;
+					Intent intent = new Intent(NewOrderActivity.this,
+							GoogleMapsView.class);
+					Bundle b = new Bundle();
+					b.putDouble("LATITUDE", currentLocation.getLatitude());
+					b.putDouble("LONGITUDE", currentLocation.getLongitude());
+
+					intent.putExtras(b);
+					NewOrderActivity.this.startActivityForResult(intent,
+							Globals.ACTIVITY_GOOGLE_MAPS_FROM);
+				}
+				if (getMapToWasPressed) {
+					getMapToWasPressed = false;
+					Intent intent = new Intent(NewOrderActivity.this,
+							GoogleMapsView.class);
+					Bundle b = new Bundle();
+					b.putDouble("LATITUDE", currentLocation.getLatitude());
+					b.putDouble("LONGITUDE", currentLocation.getLongitude());
+
+					intent.putExtras(b);
+					NewOrderActivity.this.startActivityForResult(intent,
+							Globals.ACTIVITY_GOOGLE_MAPS_TO);
+				}
 			}
 		}
 
@@ -133,4 +201,41 @@ public class NewOrderActivity extends Activity {
 		}
 
 	};
+
+	/**
+	 * Data handled when coming back from activities started from this Activity
+	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		// when coming back from Google Maps
+		case Globals.ACTIVITY_GOOGLE_MAPS_FROM: {
+			if (resultCode == Activity.RESULT_OK) {
+				Bundle b = data.getExtras();
+				fromAddress.setText(b.getString("address"));
+				fromCity.setText(b.getString("city"));
+			}
+			break;
+		}
+		case Globals.ACTIVITY_GOOGLE_MAPS_TO: {
+			if (resultCode == Activity.RESULT_OK) {
+				Bundle b = data.getExtras();
+				toAddress.setText(b.getString("address"));
+				toCity.setText(b.getString("city"));
+
+			}
+			break;
+		}
+		case Globals.ACTIVITY_COMPANIES: {
+			if (resultCode == Activity.RESULT_OK) {
+				Bundle b = data.getExtras();
+				companyLabel.setText("Company: " + b.getString("company_name"));
+				// order.setCompanyid(b.getLong("company_id"));
+
+			}
+
+		}
+		}
+	}
 }
