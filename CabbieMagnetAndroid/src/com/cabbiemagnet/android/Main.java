@@ -1,6 +1,7 @@
 package com.cabbiemagnet.android;
 
 import com.cabbiemagnet.android.services.CustomerService;
+import com.cabbiemagnet.android.services.OrderService;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,11 +23,14 @@ public class Main extends Activity {
 	Button newOrderButton;
 	Button loginButton;
 	Button editUsernameButton;
+	Button viewOrdersButton;
 	Button registerButton;
-	CustomerService customerService;
 	EditText phoneNumberField;
 	EditText usernameField;
 	TextView usernameLabel;
+	
+	CustomerService customerService;
+	OrderService orderService;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,11 +39,13 @@ public class Main extends Activity {
 		setContentView(R.layout.main);
 
 		customerService = new CustomerService();
+		orderService = new OrderService();
 		
 		newOrderButton = (Button) findViewById(R.id.new_order_button);
 		loginButton = (Button) findViewById(R.id.login_button);
 		editUsernameButton = (Button) findViewById(R.id.editName_button);
 		registerButton = (Button) findViewById(R.id.register_button);
+		viewOrdersButton = (Button) findViewById(R.id.view_orders_button);
 		phoneNumberField = (EditText) findViewById(R.id.phonenumber_field);
 		usernameField = (EditText) findViewById(R.id.username_field);
 		phoneNumberField.setText("4521576567");
@@ -117,6 +123,21 @@ public class Main extends Activity {
 					}
 				}
 				
+			}
+		});
+		
+		viewOrdersButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent (Main.this, ReviewOrdersActivity.class);
+				
+				try {
+					orderService.getOrders(phoneNumberField.getText().toString());
+				} catch (Exception e) {
+					Toast.makeText(Main.this, e.getMessage(), Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+				}
 			}
 		});
 		
