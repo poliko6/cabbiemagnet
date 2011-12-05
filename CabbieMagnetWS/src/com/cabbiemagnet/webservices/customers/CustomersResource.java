@@ -8,7 +8,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
@@ -90,7 +89,7 @@ public class CustomersResource {
 			URI cUri = uriInfo.getAbsolutePathBuilder().build();
 			
 			// Response Created that give 
-			res = Response.created(cUri).entity("Created user: " + id + " with name: " + name).build();
+			res = Response.created(cUri).entity(name).build();
 		} else {
 			// no changes where made response 
 			res = Response.notModified().build();
@@ -99,9 +98,9 @@ public class CustomersResource {
 	}
 
 	@GET
-	@Path("{id}")
+	@Path("/get")
 	//@Produces({ MediaType.APPLICATION_JSON })
-	public Response getCustomer(@PathParam("id") long id) {
+	public Response getCustomer(@QueryParam("id") long id) {
 
 		Response res;
 
